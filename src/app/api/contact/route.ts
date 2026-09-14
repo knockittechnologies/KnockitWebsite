@@ -42,6 +42,10 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
+  if (new URL(req.url).searchParams.get("debug") === "1") {
+    const envKeys = Object.keys(process.env).sort();
+    return NextResponse.json({ allEnvKeys: envKeys, hasResendKey: "RESEND_API_KEY" in process.env });
+  }
 
   const {
     RESEND_API_KEY,
