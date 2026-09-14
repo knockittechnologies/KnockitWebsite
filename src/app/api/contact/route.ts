@@ -15,7 +15,7 @@ type ContactPayload = {
 };
 
 function row(label: string, value?: string) {
-  const v = value && value.trim() ? value : "—";
+  const v = value && value.trim() ? value : "-";
   return `<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;background:#f9fafb;font-weight:600;width:220px;color:#111">${label}</td><td style="padding:8px 12px;border:1px solid #e5e7eb;color:#111">${escapeHtml(v)}</td></tr>`;
 }
 
@@ -42,12 +42,10 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
-const debugKeys = Object.keys(process.env).filter(k => k.includes("RESEND") || k.includes("CONTACT"));
-  return NextResponse.json({ debug: true, foundKeys: debugKeys, hasResendKey: !!process.env.RESEND_API_KEY });
 
   const {
     RESEND_API_KEY,
-    RESEND_FROM = "lead@knockittechnologies.co.uk",
+    RESEND_FROM = "leads@knockittechnologies.co.uk",
     CONTACT_TO = "official@knockittechnologies.co.uk",
     CONTACT_CC = "rakhshana@knockittechnologies.co.uk",
   } = process.env;
@@ -83,7 +81,7 @@ const debugKeys = Object.keys(process.env).filter(k => k.includes("RESEND") || k
       from: RESEND_FROM,
       to: [CONTACT_TO, CONTACT_CC],
       replyTo: payload.email,
-      subject: `New Contact Enquiry – ${payload.fullName}`,
+      subject: `New Contact Enquiry - ${payload.fullName}`,
       html,
     });
 
