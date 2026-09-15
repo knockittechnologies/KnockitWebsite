@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { ServicesStrip } from "@/components/sections/ServicesStrip";
+import { ExpertiseList } from "@/components/sections/ExpertiseList";
 import { About } from "@/components/sections/About";
-import { Services } from "@/components/sections/Services";
+import { ServicesShowcase } from "@/components/sections/ServicesShowcase";
 import { Projects } from "@/components/sections/Projects";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -15,21 +15,14 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <ServicesStrip />
+        <ExpertiseList />
         <About />
-        <Services />
+        <ServicesShowcase />
         <Projects />
         <WhyChooseUs />
         <Testimonials />
-        <div
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, #2B2058 0%, #000000 100%)",
-          }}
-        >
-          <Contact />
-          <Footer />
-        </div>
+        <Contact />
+        <Footer />
       </main>
     </>
   );

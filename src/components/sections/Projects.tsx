@@ -1,248 +1,124 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { motion } from "framer-motion";
-import Image, { type StaticImageData } from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useRef } from "react";
-
-import imgSentrix from "@/assests/Rectangle 157936.png";
-import imgFort from "@/assests/Rectangle 157938.png";
-import imgLunarpark from "@/assests/Rectangle 157940.png";
-import imgJuicePlanet from "@/assests/Rectangle 157942.png";
-import logoSentrix from "@/assests/Group 39475.png";
-import logoFort from "@/assests/Group 39476.png";
-import logoLunarpark from "@/assests/Group 39477.png";
-import logoJuicePlanet from "@/assests/Group 39478.png";
-import iconArrow from "@/assests/7.png";
-
-type CardTheme = "dark-purple" | "black" | "light";
-
-type Project = {
-  name: string;
-  type: string;
-  desc: string;
-  image: StaticImageData | string;
-  logo?: StaticImageData;
-  theme: CardTheme;
-  logoBg?: string;
-  logoChar?: string;
-};
-
-const projects: Project[] = [
+const caseStudies = [
   {
     name: "Sentrix",
-    type: "Custom CRM",
+    tag: "Custom CRM",
+    title: "Custom CRM",
     desc: "Built a fully customized CRM with every feature they requested, approved at every production phase, which led to hassle-free business.",
-    image: imgSentrix,
-    logo: logoSentrix,
-    theme: "dark-purple",
+    href: "/case-studies/sentrix-crm",
+    img: "1616763355603-9755a640a287",
   },
   {
     name: "The Fort",
-    type: "Multi-vendor single basket",
+    tag: "Multi-vendor single basket",
+    title: "Multi-vendor single basket",
     desc: "Built a complex multi-vendor system with unified checkout, approved step by step, which led to a seamless customer experience.",
-    image: imgFort,
-    logo: logoFort,
-    theme: "black",
+    href: "/case-studies/the-fort-multi-vendor",
+    img: "1519567241046-7f570eee3ce6",
   },
   {
     name: "Lunarpark",
-    type: "Click & collect + car delivery",
+    tag: "Click & collect + car delivery",
+    title: "Click & collect + car delivery",
     desc: "Built a system handling both pickup and car delivery, which led to faster turnaround and happy customers.",
-    image: imgLunarpark,
-    logo: logoLunarpark,
-    theme: "light",
+    href: "/case-studies/lunarpark-click-collect",
+    img: "1541542684-4a936e1cbb5a",
   },
   {
     name: "Juice Planet",
-    type: "Single vendor click & collect takeaway",
-    desc: "Built a simple but complete ordering system for a single-vendor juice bar, which led to easy operations for staff and convenience for customers.",
-    image: imgJuicePlanet,
-    logo: logoJuicePlanet,
-    theme: "dark-purple",
+    tag: "Single-vendor click & collect + takeaway",
+    title: "Single vendor click & collect + takeaway",
+    desc: "Built a simple but complete ordering system, which led to easy operations for staff and convenience for customers.",
+    href: "/case-studies/juice-planet-ordering",
+    img: "1622597467836-f3285f2131b8",
   },
   {
-    name: "Andalusia Food park",
-    type: "Food park multi-vendor ordering",
-    desc: "Built a full system plus setup and maintenance for vendors, which led to vendors running their operations smoothly with instant support.",
-    image:
-      "https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800&q=80",
-    theme: "black",
-    logoBg: "bg-red-700",
-    logoChar: "A",
+    name: "Andalusia Food Park",
+    tag: "Food park multi-vendor ordering",
+    title: "Food park multi-vendor ordering",
+    desc: "Built a full system plus setup and maintenance for vendors, which led to vendors running tech smoothly with instant support.",
+    href: "/case-studies/andalusia-food-park",
+    img: "1504674900247-0877df9cc836",
   },
 ];
 
-const themeStyles: Record<
-  CardTheme,
-  { card: string; title: string; body: string; arrowBg: string; arrowText: string }
-> = {
-  "dark-purple": {
-    card: "bg-[#1a0f3a] text-white",
-    title: "text-white",
-    body: "text-white",
-    arrowBg: "bg-white/10",
-    arrowText: "text-white",
-  },
-  black: {
-    card: "bg-[#141414] text-white",
-    title: "text-white",
-    body: "text-white",
-    arrowBg: "bg-white/10",
-    arrowText: "text-white",
-  },
-  light: {
-    card: "bg-[#f3f3f3] text-black",
-    title: "text-black",
-    body: "text-gray-600",
-    arrowBg: "bg-white",
-    arrowText: "text-brand",
-  },
-};
-
 export function Projects() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const amount = 365;
-    scrollRef.current.scrollBy({
-      left: dir === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <section id="projects" className="relative py-16 md:py-20 bg-white">
-      <div className="mx-auto max-w-[1200px] px-6 sm:px-8">
-        <div className="flex items-end justify-between gap-6 mb-10 md:mb-12">
+    <section className="py-24 px-8">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-[320px_1fr] gap-6">
+        <div
+          className="rounded-3xl p-8 text-white flex flex-col justify-between min-h-[300px]"
+          style={{
+            background: "linear-gradient(160deg, #3d0a6b 0%, #1c0136 100%)",
+          }}
+        >
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-display font-medium text-[16px] md:text-[20px] leading-none uppercase text-black">
-                Clients
-              </span>
-              <ArrowRight size={20} className="text-black" />
+            <div className="flex items-center gap-2 text-sm font-medium text-white/70 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/70" />
+              Clients
             </div>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-display font-semibold text-[28px] md:text-[45px] leading-none tracking-[-0.03em] bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(176deg, #2f225c 0%, #aa74e2 100%)",
-              }}
-            >
-              Our Clients & Projects
-            </motion.h2>
-            <p className="mt-4 font-sans font-medium text-[14px] md:text-[16px] leading-[28px] md:leading-[32px] tracking-[-0.02em] text-black max-w-xl">
-              We&apos;re proud to work with forward-thinking businesses that
-              trust us to deliver their digital transformation:
-            </p>
+            <h2 className="text-2xl font-display font-semibold">
+              Our Clients &amp; Projects
+            </h2>
           </div>
-
-          <div className="hidden md:flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => scroll("left")}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-mid transition"
-              aria-label="Scroll left"
+          <div>
+            <p className="text-sm text-white/60 leading-relaxed mb-6">
+              We&apos;re proud to work with forward-thinking businesses that
+              trust us to deliver their digital transformation.
+            </p>
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-1.5 text-sm font-medium hover:gap-2.5 transition-all"
             >
-              <ArrowLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-mid transition"
-              aria-label="Scroll right"
-            >
-              <ArrowRight size={18} />
-            </button>
+              View All Case Studies <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {projects.map((p, i) => {
-            const t = themeStyles[p.theme];
-            return (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className={`group flex flex-col rounded-[20px] overflow-hidden shrink-0 w-[341px] snap-start ${t.card}`}
-              >
-                <div className="relative h-[174px] overflow-hidden">
-                  {typeof p.image === "string" ? (
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${p.image})` }}
-                    />
-                  ) : (
-                    <Image
-                      src={p.image}
-                      alt={p.name}
-                      fill
-                      className="object-cover"
-                      sizes="341px"
-                    />
-                  )}
+        <div className="flex flex-col gap-5">
+          {caseStudies.map((c) => (
+            <div
+              key={c.name}
+              className="rounded-3xl overflow-hidden grid md:grid-cols-[1fr_1.3fr]"
+              style={{
+                background:
+                  "linear-gradient(135deg, #3d0a6b 0%, #1c0136 100%)",
+              }}
+            >
+              <div className="relative min-h-[220px]">
+                <Image
+                  src={`https://images.unsplash.com/photo-${c.img}?q=80&w=700&auto=format&fit=crop`}
+                  alt={c.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-8 text-white flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold">
+                    {c.name.slice(0, 2).toUpperCase()}
+                  </div>
+                  <span className="font-medium">{c.name}</span>
                 </div>
-                <div className="flex flex-col gap-4 px-6 pt-6 pb-6 flex-1">
-                  <div className="flex items-center gap-3">
-                    {p.logo ? (
-                      <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white overflow-hidden shrink-0">
-                        <Image
-                          src={p.logo}
-                          alt={`${p.name} logo`}
-                          width={48}
-                          height={48}
-                          className="h-12 w-12 object-contain"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className={`flex h-[60px] w-[60px] items-center justify-center rounded-full font-display font-bold text-base ${p.logoBg} text-white shrink-0`}
-                      >
-                        {p.logoChar}
-                      </div>
-                    )}
-                    <span className={`font-display font-semibold text-[28px] leading-none tracking-[-0.03em] ${t.title}`}>
-                      {p.name}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-px">
-                    <h3
-                      className={`font-sans font-semibold text-[20px] leading-[32px] tracking-[-0.4px] ${t.title}`}
-                    >
-                      {p.type}
-                    </h3>
-
-                    <p
-                      className={`font-sans font-medium text-[14px] leading-[28px] tracking-[-0.28px] ${t.body}`}
-                    >
-                      {p.desc}
-                    </p>
-                  </div>
-
-                  <div className="mt-auto pt-2">
-                    <Image
-                      src={iconArrow}
-                      alt=""
-                      width={42}
-                      height={42}
-                      className={`h-[42px] w-[42px] transition group-hover:rotate-45 ${
-                        p.theme === "light" ? "invert" : ""
-                      }`}
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                <h3 className="text-lg font-display font-semibold mb-2">
+                  {c.title}
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed mb-4">
+                  {c.desc}
+                </p>
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium w-fit hover:gap-2.5 transition-all"
+                >
+                  View Case Study <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
